@@ -1,1 +1,4 @@
-# CEvent-SoftDev6 - by Solidarios
+# CEvent - by Vladimir
+- Juan Pablo Arequipa
+- Elvis Castro
+- Carlos Ballester
