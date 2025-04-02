@@ -1,0 +1,6 @@
+*.env
+*/bin
+*/obj
+keycloak-config/venv/
+keycloak-config/*.json
+keycloak-config/__pycache__/

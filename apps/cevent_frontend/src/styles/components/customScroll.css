@@ -1,0 +1,18 @@
+.custom-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #888 #e0e0e0; /* Firefox */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Chrome, Safari, Opera */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #e0e0e0; /* Chrome, Safari, Opera */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888; /* Chrome, Safari, Opera */
+  border-radius: 10px; /* Chrome, Safari, Opera */
+  border: 2px solid #e0e0e0; /* Chrome, Safari, Opera */
+}

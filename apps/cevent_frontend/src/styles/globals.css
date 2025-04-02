@@ -1,0 +1,62 @@
+@import '@fontsource/inter';
+
+:root {
+  --primary-main: #035ae1;
+  --primary-light: #4d7bf3;
+  --primary-contrastText: #fff;
+  --secondary-main: #0a2140;
+  --secondary-light: #3a4c6b;
+  --secondary-contrastText: #fff;
+  --tertiary-main: #f6b835;
+  --tertiary-light: #f6b835;
+  --tertiary-contrastText: #000;
+  --white: #fff;
+  --black: #000;
+  --black-light: rgba(0, 0, 0, 0.6);
+  --gray: #f2f2f2;
+  --gray-light: #e5e5e5;
+  --error-main: #f44336;
+  --warning-main: #ff9800;
+  --info-main: #2196f3;
+  --success-main: #4caf50;
+  --background-default: #fff;
+  --background-paper: #fff;
+  --text-primary: #000;
+  --text-secondary: #000;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  size: 16px;
+  color: var(--text-primary);
+  background: var(--background-default);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}

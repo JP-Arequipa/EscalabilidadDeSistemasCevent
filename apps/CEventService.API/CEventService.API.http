@@ -1,0 +1,6 @@
+@CEventService.API_HostAddress = http://localhost:5251
+
+GET {{CEventService.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

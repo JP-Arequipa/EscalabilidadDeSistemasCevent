@@ -1,0 +1,89 @@
+# Ignore Visual Studio temporary files, build results, and
+# Rider project settings.
+
+/[Oo]bj/
+/[Bb]in/
+/[Ll]og/
+/.vscode/
+/.idea/
+/.recommenders/
+/.vs/
+/.gradle/
+/.project
+*.user
+*.suo
+*.dotCover
+*.lock.json
+*.dbmdl
+*.opendb
+*.pdb
+*.cache
+*.obj
+*.ipch
+*.bak
+*.ncb
+*.log
+*.swp
+*.ide
+*.userprefs
+
+# Rider specific files
+.idea/
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/modules.xml
+.idea/**/misc.xml
+.idea/**/deployment.xml
+.idea/**/deployment_*.xml
+.idea/**/codeStyles
+.idea/**/codeStylesSettings.xml
+.idea/**/fileTemplates
+.idea/**/sqldialects.xml
+.idea/**/structure.file
+.idea/**/project.iml
+
+# User-specific files
+*.rsuser
+*.sln.docstates
+
+# Auto-generated files
+Generated_Code/
+.vscode/
+.vs/
+out/
+    
+# Rider/JetBrains specific settings
+.idea/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/.idea/
+.idea/modules.xml
+.idea/misc.xml
+
+# Visual Studio specific settings
+.vs/
+.vscode/
+*.suo
+*.user
+*.dotSettings.user
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Windows crash dump files
+*.stackdump
+
+# Rider's run configuration files
+.idea/**/runConfigurations
+.idea/**/workspace.xml
+
+# Visual Studio Code settings
+.vscode/
+
+# Rider generated files
+.idea/
+
+.env
+obj/
+bin/

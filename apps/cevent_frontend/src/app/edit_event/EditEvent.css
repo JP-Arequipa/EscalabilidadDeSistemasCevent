@@ -1,0 +1,13 @@
+.reminder-container {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.checkbox-label {
+  font-weight: bold;
+}
+
+.update-event-button {
+  margin-top: 32px;
+}

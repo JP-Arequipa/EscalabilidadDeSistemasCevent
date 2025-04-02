@@ -1,0 +1,19 @@
+.additional-settings-box {
+  border: 1px solid #4a88e9;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.additional-settings-title {
+  font-weight: bold;
+}
+
+.additional-settings-description {
+  margin-top: 16px;
+  font-weight: bold;
+}
+
+.additional-settings-info {
+  margin-bottom: 16px;
+}

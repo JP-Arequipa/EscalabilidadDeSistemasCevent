@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  padding: 2rem;
+  background-color: #f4f5f7;
+}
+
+.info-box {
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  background-color: #fff;
+  margin-bottom: 16px;
+}
+
+.selected-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.image-upload {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border: 1px dashed #d0d0d0;
+}
+
+.image-upload label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #000000;
+  font-weight: bold;
+}
+
+.modal-box {
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.sidebar-button {
+  width: 100%;
+  margin-top: 1rem;
+}

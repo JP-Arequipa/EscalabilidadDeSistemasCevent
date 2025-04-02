@@ -1,0 +1,49 @@
+.info-box {
+  border: 1px solid #4a88e9;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 24px;
+}
+
+.activity-title {
+  font-weight: bold;
+}
+
+.activity-description {
+  margin-top: 8px;
+}
+
+.activity-input {
+  margin-top: 16px;
+}
+
+.activity-input:hover .MuiOutlinedInput-notchedOutline,
+.activity-input:focus .MuiOutlinedInput-notchedOutline {
+  border-color: #4a88e9;
+}
+
+.add-activity-button {
+  margin-left: 16px;
+}
+
+.remove-description-button {
+  margin-right: 16px;
+  margin-top: 16px;
+}
+
+.add-activity-action {
+  margin-top: 16px;
+}
+
+.added-activities-title {
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.input-text {
+  color: black;
+}
+
+.optionStatus {
+  color: black;
+}

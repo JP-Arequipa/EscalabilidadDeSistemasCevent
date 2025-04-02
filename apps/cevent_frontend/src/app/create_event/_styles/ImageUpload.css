@@ -1,0 +1,11 @@
+.image-upload {
+  margin-top: 16px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.selected-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 16px;
+}

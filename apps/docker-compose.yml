@@ -1,0 +1,179 @@
+version: "3.8"
+
+services:
+  # Consul Service
+  consul:
+    image: consul:1.14.3
+    container_name: consul
+    ports:
+      - "8500:8500"
+    command: agent -dev -client=0.0.0.0
+    networks:
+      - shared-network
+
+  # API Gateway
+  apigateway:
+    build:
+      context: ./ApiGateway
+      dockerfile: Dockerfile
+    container_name: apigateway
+    ports:
+      - "5149:5149"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - SERVICE_DISCOVERY_URL=http://servicediscovery:5198/api/service-registry/services
+
+    depends_on:
+      - consul
+      - servicediscovery
+      - sqlserver
+      - notification_sqlserver
+    networks:
+      - shared-network
+
+  # Service Discovery
+  servicediscovery:
+    build:
+      context: ./ServiceDiscovery
+      dockerfile: Dockerfile
+    container_name: servicediscovery
+    ports:
+      - "5198:5198"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Consul__Address=http://consul:8500
+    depends_on:
+      - consul
+      - sqlserver
+    networks:
+      - shared-network
+
+  # CEvent Service API
+  ceventservice:
+    build:
+      context: ./CEventService.API
+      dockerfile: Dockerfile
+    container_name: ceventservice
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CONNECTION_STRING="Server=sqlserver_container,1433;Database=DesarrolloDB;User Id=SA;Password=P@pers123;Encrypt=True;TrustServerCertificate=True;"
+    depends_on:
+      - sqlserver   
+    networks:
+      - shared-network
+    volumes:
+      - ./CEventService.API:/app
+      - ./CEventService.API/.env:/app/.env
+
+  # SQL Server
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_container
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=P@pers123
+      - MSSQL_PID=Developer
+      - MSSQL_DB=CeventDB
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "echo 'SELECT 1' | /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $MSSQL_SA_PASSWORD",
+        ]
+      interval: 10s
+      retries: 10
+    networks:
+      - shared-network
+
+  notification_sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: notification_sqlserver_container
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=P@pers123
+      - MSSQL_PID=Developer 
+      - MSSQL_DB=DesarrolloDB
+    ports:
+      - "3314:3314"
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'SELECT 1' | /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $MSSQL_SA_PASSWORD"]
+      interval: 10s
+      retries: 10
+    networks:
+      - shared-network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    ports:
+      - "8080:8080"
+    command:
+      - start-dev
+        
+  # Ticket Service API
+  ticketservice:
+    build:
+      context: ./TicketService.API
+      dockerfile: Dockerfile
+    container_name: ticketservice
+    ports:
+      - "5200:5200"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CONNECTION_STRING="Server=ticket_sqlserver,1433;Database=TicketDB;User Id=sa;Password=tickeT@2024;Encrypt=True;TrustServerCertificate=True;MultipleActiveResultSets=true"
+      - Consul__Address=http://consul:8500
+    depends_on:
+      - ticket_sqlserver
+      - servicediscovery
+      - consul
+    networks:
+      - shared-network
+    volumes:
+      - ./TicketService.API:/app
+      - ./TicketService.API/.env:/app/.env
+
+  # Base de datos para TicketService
+  ticket_sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: ticket_sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=tickeT@2024
+      - MSSQL_PID=Developer
+      - MSSQL_DB=TicketDB
+    ports:
+      - "1435:1433"
+    healthcheck:
+      test: [ "CMD-SHELL", "echo 'SELECT 1' | /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $MSSQL_SA_PASSWORD" ]
+      interval: 10s
+      retries: 10
+    networks:
+      - shared-network
+
+  notifications:
+    build:
+      context: ./NotificationService.API
+      dockerfile: Dockerfile
+    container_name: notifications
+    ports:
+      - "5071:5071"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CONNECTION_STRING="Server=sqlserver_container,1433;Database=NotificationsDB;User Id=SA;Password=P@pers123;Encrypt=True;TrustServerCertificate=True;"
+    depends_on:
+      - sqlserver      
+    networks:
+      - shared-network
+    volumes:
+      - ./NotificationService.API:/app
+      - ./NotificationService.API/.env:/app/.env
+
+networks:
+  shared-network:
+    driver: bridge
